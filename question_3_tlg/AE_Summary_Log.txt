@@ -1,0 +1,26 @@
+Warning message:
+package ‘gtsummary’ was built under R version 4.5.3 
+G3;
+Attaching package: ‘dplyr’
+
+gG3;The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+gG3;The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+gWarning message:
+package ‘pharmaverseadam’ was built under R version 4.5.3 
+Warning message:
+package ‘admiral’ was built under R version 4.5.3 
+G3;
+Attaching package: ‘flextable’
+
+gG3;The following object is masked from ‘package:gtsummary’:
+
+    continuous_summary
+
+gWarning message:
+package ‘flextable’ was built under R version 4.5.3 
