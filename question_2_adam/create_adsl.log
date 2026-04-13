@@ -1,0 +1,28 @@
+====================================================================
+create_adsl.R
+====================================================================
+
+Input SDTM datasets loaded.
+Number of subjects in DM:  306 
+
+STEP 1: Age group derivation
+Frequency of AGEGR9:
+
+    >50 18 - 50    <NA> 
+    305       1       0 
+
+Intent-to-Treat (ITTFL) derivation.
+ITTFL counts:
+
+   N    Y <NA> 
+  52  254    0 
+
+Treatment Start DateTime (TRTSDTM) derivation.
+Subjects with a Treatment Start Date:  254 
+
+Last Alive Date (LSTALVDT) derivation.
+Subjects with LSTALVDT:  289 
+
+Relocation of variables complete.
+Final ADSL dimensions:  306 x 33 
+====================================================================
