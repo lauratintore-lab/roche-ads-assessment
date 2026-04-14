@@ -8,6 +8,19 @@ cat("Create SDTM DS Domain from Raw Source Data\n")
 cat("====================================================================\n\n")
 
 #### EXERCISE 1: Create SDTM Disposition (DS) domain dataframe ####
+
+suppressPackageStartupMessages(suppressWarnings({
+  library(admiral)
+  library(dplyr, warn.conflicts = FALSE)
+  library(pharmaversesdtm)
+  library(lubridate)
+  library(tidyverse)
+  library(sdtm.oak)
+  library(pharmaverseraw)
+  library(ggplot2)
+}))
+
+
 library(sdtm.oak)
 library(pharmaverseraw)
 library(dplyr)
@@ -46,12 +59,11 @@ cat("Verbatim term mapping (DSTERM).\n\n")
 ds_raw <- ds_raw %>%
   mutate(DSDECOD_RAW = if_else(!is.na(OTHERSP) & OTHERSP !="", OTHERSP, IT.DSDECOD),
          DSDECOD_RAWC = toupper(DSDECOD_RAW), #Capital letters
-         DSDECOD_READY = case_match(
-           DSDECOD_RAWC,
-           "RANDOMIZED"           ~ "COMPLETED",
-           "FINAL LAB VISIT"       ~ "COMPLETED",
-           "FINAL RETRIEVAL VISIT" ~ "COMPLETED",
-           .default = DSDECOD_RAWC)) #Convert raw clinical terms "RANDOMIZED", "FINAL LAB VISIT", and "FINAL RETRIEVAL VISIT" that cannot be mapped to controlled terminology to dictionary-ready terms
+         DSDECOD_READY = case_when(
+           DSDECOD_RAWC == "RANDOMIZED"           ~ "COMPLETED",
+           DSDECOD_RAWC == "FINAL LAB VISIT"       ~ "COMPLETED",
+           DSDECOD_RAWC == "FINAL RETRIEVAL VISIT" ~ "COMPLETED",
+           TRUE ~ DSDECOD_RAWC)) #Convert raw clinical terms "RANDOMIZED", "FINAL LAB VISIT", and "FINAL RETRIEVAL VISIT" that cannot be mapped to controlled terminology to dictionary-ready terms
 
 # For column Discontinuation Reason, Visit and visitnum apply controlled terminology. 
 ds <- ds %>%
@@ -86,7 +98,7 @@ ds <- ds %>%
   mutate(
     VISITNUM = case_when(VISIT == "AMBUL ECG REMOVAL" ~ 6,
                          str_detect(VISIT, "UNSCHEDULED") ~ as.numeric(str_extract(VISIT, "[0-9.]+")),
-                         TRUE ~ as.numeric(VISITNUM)
+                         TRUE ~ suppressWarnings(as.numeric(VISITNUM))
                          
     )
   )
