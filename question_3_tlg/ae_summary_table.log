@@ -1,0 +1,10 @@
+====================================================================
+AE_Summary_Table.RGenerate AE Summary Table with Subject-Level Incidence====================================================================
+
+Count of Treatment-Emergent Records (TRTEMFL == 'Y'):
+[1] 1122
+Count of Unique Subjects with at least one TEAE:
+[1] 217
+Final subject count in combined dataset[1] 217
+Total N (Denominator) from ADSL used for headers:  306 
+====================================================================
