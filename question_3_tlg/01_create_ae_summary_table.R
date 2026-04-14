@@ -1,6 +1,6 @@
-log_file <- paste0("AE_Summary_Log", ".txt")
-log_con <- file(log_file, open = "wt")
-sink(log_con, type = "message") # Captures warnings/errors
+log_file <- file("question_3_tlg/ae_summary_table.log", open = "wt")
+sink(log_file, type = "output")
+sink(log_file, type = "message")
 
 cat("====================================================================\n")
 cat("AE_Summary_Table.R")
@@ -79,4 +79,4 @@ cat("====================================================================\n")
 
 sink(type = "message") # Stop capturing warnings
 sink()                # Stop capturing console output
-close(log_con)
+close(log_file)
