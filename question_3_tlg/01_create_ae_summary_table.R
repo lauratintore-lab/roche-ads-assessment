@@ -12,7 +12,6 @@ library(gtsummary)
 library(dplyr)
 library(pharmaverseadam)
 library(admiral)
-library(flextable)
 
 # Load input datasets
 adsl <- pharmaverseadam::adsl
@@ -76,12 +75,8 @@ ae_table_final <- combined_ae %>%
 
 print(ae_table_final)
 
-#Save as PNG
-ae_table_final %>%
-  as_flex_table() %>%
-  save_as_image(path = "AE_Summary_Table.png")
-
 cat("====================================================================\n")
 
 sink(type = "message") # Stop capturing warnings
 sink()                # Stop capturing console output
+close(log_con)
